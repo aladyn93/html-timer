@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>10 Minute Countdown</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #1e1e1e;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      font-size: 4em;
+    }
+    #timer {
+      background: #333;
+      padding: 20px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+  <div id="timer">10:00</div>
+
+  <script>
+    let timeLeft = 600; // 10 minutes in seconds
+
+    function updateTimer() {
+      let minutes = Math.floor(timeLeft / 60);
+      let seconds = timeLeft % 60;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+      document.getElementById("timer").textContent = minutes + ":" + seconds;
+
+      if (timeLeft > 0) {
+        timeLeft--;
+      } else {
+        clearInterval(countdown);
+        document.getElementById("timer").textContent = "Time's up!";
+      }
+    }
+
+    // Start countdown automatically
+    updateTimer();
+    let countdown = setInterval(updateTimer, 1000);
+  </script>
+</body>
+</html>
